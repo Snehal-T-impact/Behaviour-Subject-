@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonserviceService } from '../commonservice.service';
 
 @Component({
   selector: 'app-comp3',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comp3.component.css']
 })
 export class Comp3Component implements OnInit {
-
-  constructor() { }
+userName:any;
+  constructor(private ser:CommonserviceService) { 
+    this.ser.abc.subscribe((uname)=>{
+      this.userName=uname;
+    })
+  }
 
   ngOnInit(): void {
   }
+  onClick(com1:any){
+    //this.userName=com1.value;
+    this.ser.abc.next(com1.value);
+      }
 
 }
